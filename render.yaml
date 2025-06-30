@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: rust-api-server
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /
+    envVars:
+      - key: RUST_LOG
+        value: info
