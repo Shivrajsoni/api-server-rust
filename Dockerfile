@@ -5,8 +5,11 @@ WORKDIR /usr/src/app
 # Copy the entire project
 COPY . .
 
-# Build the application
-RUN cargo build --release
+# List files to debug
+RUN ls -la
+
+# Build the application with verbose output
+RUN cargo build --release --verbose
 
 # --- Runtime Stage ---
 FROM debian:buster-slim
