@@ -2,15 +2,10 @@
 FROM rust:1.76 as builder
 WORKDIR /usr/src/app
 
-# Copy Cargo.toml first for better caching
-COPY Cargo.toml ./
+# Copy the entire project
+COPY . .
 
-# Create a dummy main.rs to build dependencies
-RUN mkdir src && echo "fn main() {}" > src/main.rs
-RUN cargo build --release
-
-# Now copy the actual source code
-COPY src ./src
+# Build the application
 RUN cargo build --release
 
 # --- Runtime Stage ---
